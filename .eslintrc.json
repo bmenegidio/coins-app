@@ -6,6 +6,10 @@
   "plugins": [
     "@nx"
   ],
+  "extends": [
+    "plugin:@typescript-eslint/recommended",
+    "plugin:prettier/recommended"
+  ],
   "overrides": [
     {
       "files": [
