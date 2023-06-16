@@ -53,5 +53,5 @@ npm-debug.*
 web-build/
 cache/
 
-
+.env
 apps/coins-app-e2e/artifacts
