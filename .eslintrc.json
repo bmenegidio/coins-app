@@ -4,12 +4,17 @@
     "**/*"
   ],
   "plugins": [
-    "@nx"
+    "@nx",
+    "simple-import-sort"
   ],
   "extends": [
     "plugin:@typescript-eslint/recommended",
     "plugin:prettier/recommended"
   ],
+  "rules": {
+    "simple-import-sort/imports": "error",
+    "simple-import-sort/exports": "error"
+  },
   "overrides": [
     {
       "files": [
@@ -31,6 +36,25 @@
                   "*"
                 ]
               }
+            ]
+          }
+        ],
+        "simple-import-sort/imports": [
+          "error",
+          {
+            "groups": [
+              // Packages `react` related packages come first.
+              ["^react", "^@?\\w"],
+              // Internal packages.
+              ["^(@|components)(/.*|$)"],
+              // Side effect imports.
+              ["^\\u0000"],
+              // Parent imports. Put `..` last.
+              ["^\\.\\.(?!/?$)", "^\\.\\./?$"],
+              // Other relative imports. Put same-folder imports and `.` last.
+              ["^\\./(?=.*/)(?!/?$)", "^\\.(?!/?$)", "^\\./?$"],
+              // Style imports.
+              ["^.+\\.?(css)$"]
             ]
           }
         ]
