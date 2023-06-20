@@ -26,6 +26,7 @@
     "expo-router": "^1.5.3",
     "expo-splash-screen": "~0.18.2",
     "expo-status-bar": "~1.4.4",
+    "native-base": "^3.4.28",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-native": "0.71.8",
@@ -88,9 +89,5 @@
     "ts-jest": "^29.1.0",
     "ts-node": "10.9.1",
     "typescript": "^4.9.4"
-  },
-  "overrides": {
-    "metro": "0.76.0",
-    "metro-resolver": "0.76.0"
   }
 }
