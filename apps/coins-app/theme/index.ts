@@ -1,6 +1,7 @@
 export const theme = {
   colors: {
     primary: {
+      '50': '#F2FBE8',
       '100': '#F2FBE8',
       '200': '#E3F7D2',
       '300': '#C8E7B4',
@@ -12,6 +13,7 @@ export const theme = {
       '900': '#155518',
     },
     secondary: {
+      '50': '#F2F2F2',
       '100': '#F2F2F2',
       '200': '#E5E5E5',
       '300': '#B2B2B2',
@@ -23,6 +25,7 @@ export const theme = {
       '900': '#000000',
     },
     success: {
+      '50': '#CFFACC',
       '100': '#CFFACC',
       '200': '#9BF59F',
       '300': '#66E277',
@@ -34,6 +37,7 @@ export const theme = {
       '900': '#024C38',
     },
     danger: {
+      '50': '#FBDFD4',
       '100': '#FBDFD4',
       '200': '#F7BAAB',
       '300': '#E7887D',
@@ -45,6 +49,7 @@ export const theme = {
       '900': '#530829',
     },
     info: {
+      '50': '#D1E5FD',
       '100': '#D1E5FD',
       '200': '#A3CAFB',
       '300': '#74A8F4',
@@ -56,6 +61,7 @@ export const theme = {
       '900': '#051969',
     },
     warning: {
+      '50': '#FBF1C9',
       '100': '#FBF1C9',
       '200': '#F8DF94',
       '300': '#EAC25D',
