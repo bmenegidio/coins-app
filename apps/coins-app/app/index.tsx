@@ -1,5 +1,5 @@
-import { Text } from 'react-native';
+import { Redirect } from 'expo-router';
 
-export default function Page() {
-  return <Text>Root Page22222222</Text>;
+export default function RootPage() {
+  return <Redirect href="/coins" />;
 }
