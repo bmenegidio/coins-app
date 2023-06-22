@@ -1,24 +1,20 @@
 import {
   Box,
+  Heading,
   ScrollView,
-  Text,
   useColorModeValue,
   useTheme,
   View,
 } from 'native-base';
 
-type ContentProps = {
-  children: React.ReactNode;
-  title?: string;
-  isScrollView?: boolean;
-};
+import { ContentProps } from './models/IContent';
 
 const Title = ({ title }: { title?: string }) => (
   <View>
     {title && (
-      <Text pl={4} pt={4} fontSize="lg" fontWeight="bold">
+      <Heading pl={4} pt={4} fontSize="lg" fontWeight="bold">
         {title}
-      </Text>
+      </Heading>
     )}
   </View>
 );
