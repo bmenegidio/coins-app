@@ -55,8 +55,9 @@ describe('CoinApiService', () => {
     const assetsNormalizedResults: AssetsRo[] = [
       {
         id: 'BTC',
+        label: 'Bitcoin (BTC)',
         name: 'Bitcoin',
-        priceUsd: 9166,
+        priceUsd: '$9,166.000',
         volume1HrsUsd: 102894431436.49,
       },
     ];

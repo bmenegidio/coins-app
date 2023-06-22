@@ -1,6 +1,7 @@
 export class AssetsRo {
   id: string;
+  label: string;
   name: string;
-  priceUsd: number;
+  priceUsd: string;
   volume1HrsUsd: number;
 }
