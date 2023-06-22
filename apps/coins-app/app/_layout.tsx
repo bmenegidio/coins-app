@@ -7,7 +7,7 @@ export default function RootLayout() {
   const appTheme = extendTheme(theme);
   return (
     <NativeBaseProvider theme={appTheme}>
-      <StatusBar barStyle="dark-content" />
+      <StatusBar barStyle="light-content" />
       <Stack>
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
       </Stack>
