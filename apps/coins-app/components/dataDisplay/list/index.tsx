@@ -1,3 +1,4 @@
+import { RefreshControl } from 'react-native';
 import { FontAwesome5 } from '@expo/vector-icons';
 import {
   Avatar,
@@ -9,11 +10,16 @@ import {
   Pressable,
   Spacer,
   Text,
+  useTheme,
   VStack,
 } from 'native-base';
 
+import { SkeletonList } from '../../feedback/skeletonList';
+
 import { IListProps } from './models/IListProps';
 import { IRenderItem } from './models/IRenderItem';
+
+const AVATAR_WIDTH_PX = 40;
 
 function RenderItem(props: IRenderItem) {
   return (
@@ -23,7 +29,7 @@ function RenderItem(props: IRenderItem) {
           <HStack space={[2, 3]} justifyContent="space-between">
             {props.itemKeyAvatar && (
               <Avatar
-                size="40px"
+                size={`${AVATAR_WIDTH_PX}px`}
                 source={{
                   uri: props.item[props.itemKeyAvatar],
                 }}
@@ -47,21 +53,35 @@ function RenderItem(props: IRenderItem) {
 }
 
 function List(props: IListProps) {
+  const { colors } = useTheme();
+  props.isLoading = props.isLoading ?? false;
   return (
-    <FlatList
-      data={props.data}
-      extraData={(item: any) => item[props.itemKeyId]}
-      ItemSeparatorComponent={Divider}
-      renderItem={({ item }) => (
-        <RenderItem
-          item={item}
-          itemKeyId="id"
-          itemKeyLabel={props.itemKeyLabel}
-          itemKeyDescription={props.itemKeyDescription}
-          itemKeyAvatar={props.itemKeyAvatar}
+    <>
+      <SkeletonList isLoading={props.isLoading} />
+      {!props.isLoading && (
+        <FlatList
+          data={props.data}
+          extraData={(item: any) => item[props.itemKeyId]}
+          ItemSeparatorComponent={Divider}
+          refreshControl={
+            <RefreshControl
+              refreshing={false}
+              onRefresh={props.onRefresh}
+              tintColor={colors.primary[400]}
+            />
+          }
+          renderItem={({ item }) => (
+            <RenderItem
+              item={item}
+              itemKeyId="id"
+              itemKeyLabel={props.itemKeyLabel}
+              itemKeyDescription={props.itemKeyDescription}
+              itemKeyAvatar={props.itemKeyAvatar}
+            />
+          )}
         />
       )}
-    />
+    </>
   );
 }
 
