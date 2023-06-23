@@ -16,27 +16,23 @@ export class CoinApiService {
       currency: 'USD',
       minimumFractionDigits: 3,
     });
-    return this.httpService
-      .get<CoinApiAssetsResponseRo[]>('/assets')
-      .pipe(
-        map((res) =>
-          res.data
-            .filter((asset) => asset.type_is_crypto === 1)
-            .map((asset) => ({
-              id: asset.asset_id,
-              label: `${asset.name} (${asset.asset_id})`,
-              name: asset.name,
-              priceUsd: asset.price_usd
-                ? dollarString.format(asset.price_usd)
-                : '',
-              volume1HrsUsd: asset.volume_1hrs_usd,
-            }))
-        )
-      )
-      .pipe(
-        catchError((error) => {
-          throw new BadRequestException(error);
-        })
-      );
+    return this.httpService.get<CoinApiAssetsResponseRo[]>('/assets').pipe(
+      map((res) =>
+        res.data
+          .filter((asset) => asset.type_is_crypto === 1)
+          .map((asset) => ({
+            id: asset.asset_id,
+            label: `${asset.name} (${asset.asset_id})`,
+            name: asset.name,
+            priceUsd: asset.price_usd
+              ? dollarString.format(asset.price_usd)
+              : '',
+            volume1HrsUsd: asset.volume_1hrs_usd,
+          }))
+      ),
+      catchError((error) => {
+        throw new BadRequestException(error);
+      })
+    );
   }
 }
