@@ -1,4 +1,5 @@
 import { HttpService } from '@nestjs/axios';
+import { BadRequestException } from '@nestjs/common';
 import { Test, TestingModule } from '@nestjs/testing';
 import { AxiosResponse } from 'axios';
 import { firstValueFrom, of } from 'rxjs';
@@ -67,5 +68,18 @@ describe('CoinApiService', () => {
       .mockImplementationOnce(() => of(coinApiAssetsResponse));
     const assets = await firstValueFrom(service.getAssets());
     expect(assets).toEqual(assetsNormalizedResults);
+  });
+
+  it('should return instance of BadRequestException when coinApiAssetsResponse is null', async () => {
+    const coinApiAssetsResponse: AxiosResponse<CoinApiAssetsResponseRo> = {
+      data: null,
+    } as AxiosResponse;
+
+    jest
+      .spyOn(httpService, 'get')
+      .mockImplementationOnce(() => of(coinApiAssetsResponse));
+    await expect(firstValueFrom(service.getAssets())).rejects.toThrow(
+      BadRequestException
+    );
   });
 });
