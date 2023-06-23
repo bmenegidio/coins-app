@@ -2,6 +2,7 @@ import { Logger, ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 
 import { AppModule } from './app/app.module';
+import { HttpExceptionFilter } from './app/exceptions/http-exception.filter';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -13,6 +14,7 @@ async function bootstrap() {
       transform: true,
     })
   );
+  app.useGlobalFilters(new HttpExceptionFilter());
   app.enableCors();
 
   const port = process.env.API_PORT || 3000;
