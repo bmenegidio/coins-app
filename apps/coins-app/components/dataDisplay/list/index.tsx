@@ -62,6 +62,8 @@ function List(props: IListProps) {
     []
   );
 
+  const renderSeparator = useCallback(() => <Divider />, []);
+
   return (
     <>
       <SkeletonList isLoading={props.isLoading} />
@@ -71,7 +73,7 @@ function List(props: IListProps) {
           keyExtractor={keyExtractor}
           renderItem={renderItem}
           maxToRenderPerBatch={6}
-          ItemSeparatorComponent={Divider}
+          ItemSeparatorComponent={renderSeparator}
           refreshControl={
             <RefreshControl
               refreshing={false}
