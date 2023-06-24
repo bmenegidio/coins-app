@@ -20,14 +20,15 @@ import { SkeletonList } from '../../feedback/skeletonList';
 import { IListProps } from './models/IListProps';
 
 const AVATAR_WIDTH_PX = 40;
+const LIST_ITEM_HEIGHT_PX = 60;
 
 function ListItem(item: any) {
   return (
-    <Pressable>
+    <Pressable h={`${LIST_ITEM_HEIGHT_PX}px`} justifyContent={'center'}>
       {({ isPressed }) => (
         <Box py="2" opacity={isPressed ? 0.8 : 1}>
           <HStack space={[2, 3]} justifyContent="space-between">
-            {item.avatar && (
+            {item.item.avatar && (
               <Avatar
                 size={`${AVATAR_WIDTH_PX}px`}
                 source={{
@@ -37,7 +38,7 @@ function ListItem(item: any) {
             )}
             <VStack alignSelf={'center'}>
               <Text bold>{item.item.name}</Text>
-              {item.description && <Text>{item.item.description}</Text>}
+              {item.item.description && <Text>{item.item.description}</Text>}
             </VStack>
             <Spacer />
             <IconButton>
@@ -68,6 +69,8 @@ function List(props: IListProps) {
         <FlatList
           data={props.data}
           keyExtractor={keyExtractor}
+          renderItem={renderItem}
+          maxToRenderPerBatch={6}
           ItemSeparatorComponent={Divider}
           refreshControl={
             <RefreshControl
@@ -76,7 +79,6 @@ function List(props: IListProps) {
               tintColor={colors.primary[400]}
             />
           }
-          renderItem={renderItem}
         />
       )}
     </>
