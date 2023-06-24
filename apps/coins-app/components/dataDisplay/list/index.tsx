@@ -1,3 +1,4 @@
+import { useCallback } from 'react';
 import { RefreshControl } from 'react-native';
 import { FontAwesome5 } from '@expo/vector-icons';
 import {
@@ -17,29 +18,26 @@ import {
 import { SkeletonList } from '../../feedback/skeletonList';
 
 import { IListProps } from './models/IListProps';
-import { IRenderItem } from './models/IRenderItem';
 
 const AVATAR_WIDTH_PX = 40;
 
-function RenderItem(props: IRenderItem) {
+function ListItem(item: any) {
   return (
     <Pressable>
       {({ isPressed }) => (
         <Box py="2" opacity={isPressed ? 0.8 : 1}>
           <HStack space={[2, 3]} justifyContent="space-between">
-            {props.itemKeyAvatar && (
+            {item.avatar && (
               <Avatar
                 size={`${AVATAR_WIDTH_PX}px`}
                 source={{
-                  uri: props.item[props.itemKeyAvatar],
+                  uri: item.item.avatar,
                 }}
               />
             )}
             <VStack alignSelf={'center'}>
-              <Text bold>{props.item[props.itemKeyLabel]}</Text>
-              {props.itemKeyDescription && (
-                <Text>{props.item[props.itemKeyDescription]}</Text>
-              )}
+              <Text bold>{item.item.name}</Text>
+              {item.description && <Text>{item.item.description}</Text>}
             </VStack>
             <Spacer />
             <IconButton>
@@ -55,13 +53,21 @@ function RenderItem(props: IRenderItem) {
 function List(props: IListProps) {
   const { colors } = useTheme();
   props.isLoading = props.isLoading ?? false;
+
+  const keyExtractor = useCallback((item: any) => item.id.toString(), []);
+
+  const renderItem = useCallback(
+    ({ item }: { item: any }) => <ListItem item={item} />,
+    []
+  );
+
   return (
     <>
       <SkeletonList isLoading={props.isLoading} />
       {!props.isLoading && (
         <FlatList
           data={props.data}
-          extraData={(item: any) => item[props.itemKeyId]}
+          keyExtractor={keyExtractor}
           ItemSeparatorComponent={Divider}
           refreshControl={
             <RefreshControl
@@ -70,15 +76,7 @@ function List(props: IListProps) {
               tintColor={colors.primary[400]}
             />
           }
-          renderItem={({ item }) => (
-            <RenderItem
-              item={item}
-              itemKeyId="id"
-              itemKeyLabel={props.itemKeyLabel}
-              itemKeyDescription={props.itemKeyDescription}
-              itemKeyAvatar={props.itemKeyAvatar}
-            />
-          )}
+          renderItem={renderItem}
         />
       )}
     </>
