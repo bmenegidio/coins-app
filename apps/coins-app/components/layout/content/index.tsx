@@ -32,15 +32,20 @@ const ChildrenContent = (props: React.PropsWithChildren) => {
   );
 };
 
-function ContentWrapper({ children, title, isScrollView }: ContentProps) {
+function ContentWrapper({
+  children,
+  title,
+  isScrollView,
+  isFullHeight,
+}: ContentProps) {
   isScrollView = isScrollView ?? true;
   return isScrollView ? (
-    <ScrollView style={{ flex: 1 }}>
+    <ScrollView style={{ flex: isFullHeight ? 1 : 0 }}>
       <Title title={title} />
       <ChildrenContent>{children}</ChildrenContent>
     </ScrollView>
   ) : (
-    <View style={{ flex: 1 }}>
+    <View style={{ flex: isFullHeight ? 1 : 0 }}>
       <Title title={title} />
       <ChildrenContent>{children}</ChildrenContent>
     </View>

@@ -69,6 +69,7 @@ function List(props: IListProps) {
       <SkeletonList isLoading={props.isLoading} />
       {!props.isLoading && (
         <FlatList
+          contentContainerStyle={{ flexGrow: 1 }}
           data={props.data}
           keyExtractor={keyExtractor}
           renderItem={renderItem}
