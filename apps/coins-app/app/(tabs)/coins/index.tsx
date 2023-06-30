@@ -5,6 +5,7 @@ import { Icon, Input, VStack } from 'native-base';
 
 import { List } from '../../../components/dataDisplay/list';
 import { ContentWrapper } from '../../../components/layout/content';
+import { ErrorContent } from '../../../components/layout/errorContent';
 import { apiInstance } from '../../../services/api';
 
 import { ICoin } from './models/ICoin';
@@ -13,6 +14,7 @@ export default function CoinsPage() {
   const [loading, setLoading] = useState(true);
   const [coins, setCoins] = useState<ICoin[]>([]);
   const [filter, setFilter] = useState('');
+  const [error, setError] = useState(false);
   const listFiltered = filter
     ? coins.filter(
         (coin) =>
@@ -26,8 +28,9 @@ export default function CoinsPage() {
     try {
       const { data } = await apiInstance.get<ICoin[]>('/assets');
       setCoins(parseCoinDataToListStandard(data));
+      setError(false);
     } catch (error) {
-      console.log(error);
+      setError(true);
     } finally {
       setLoading(false);
     }
@@ -56,6 +59,15 @@ export default function CoinsPage() {
       debouncedSearch.cancel();
     };
   }, [debouncedSearch]);
+
+  if (error) {
+    return (
+      <ErrorContent
+        isVisible={!loading && error}
+        onRefreshClick={handleFetchCoins}
+      />
+    );
+  }
 
   return (
     <>
