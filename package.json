@@ -39,7 +39,8 @@
     "react-native-web": "~0.18.12",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.8.0",
-    "tslib": "^2.3.0"
+    "tslib": "^2.3.0",
+    "lottie-react-native": "5.1.4"
   },
   "devDependencies": {
     "@config-plugins/detox": "~5.0.1",
