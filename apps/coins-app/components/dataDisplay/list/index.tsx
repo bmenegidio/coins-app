@@ -17,28 +17,33 @@ import {
 
 import { SkeletonList } from '../../feedback/skeletonList';
 
+import { ILIstItem } from './models/IListItemProps';
 import { IListProps } from './models/IListProps';
 
 const AVATAR_WIDTH_PX = 40;
 const LIST_ITEM_HEIGHT_PX = 60;
 
-function ListItem(item: any) {
+function ListItem({ item, onItemClick }: ILIstItem) {
   return (
-    <Pressable h={`${LIST_ITEM_HEIGHT_PX}px`} justifyContent={'center'}>
+    <Pressable
+      h={`${LIST_ITEM_HEIGHT_PX}px`}
+      justifyContent={'center'}
+      onPress={onItemClick}
+    >
       {({ isPressed }) => (
         <Box py="2" opacity={isPressed ? 0.8 : 1}>
           <HStack space={[2, 3]} justifyContent="space-between">
-            {item.item.avatar && (
+            {item.avatar && (
               <Avatar
                 size={`${AVATAR_WIDTH_PX}px`}
                 source={{
-                  uri: item.item.avatar,
+                  uri: item.avatar,
                 }}
               />
             )}
             <VStack alignSelf={'center'}>
-              <Text bold>{item.item.name}</Text>
-              {item.item.description && <Text>{item.item.description}</Text>}
+              <Text bold>{item.name}</Text>
+              {item.description && <Text>{item.description}</Text>}
             </VStack>
             <Spacer />
             <IconButton>
@@ -58,7 +63,9 @@ function List(props: IListProps) {
   const keyExtractor = useCallback((item: any) => item.id.toString(), []);
 
   const renderItem = useCallback(
-    ({ item }: { item: any }) => <ListItem item={item} />,
+    ({ item }: { item: any }) => (
+      <ListItem item={item} onItemClick={() => props.onItemClick?.(item)} />
+    ),
     []
   );
 
