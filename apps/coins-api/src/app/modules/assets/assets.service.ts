@@ -9,4 +9,8 @@ export class AssetsService {
   getAssets() {
     return this.coinApiService.getAssets();
   }
+
+  getById(assetId: string) {
+    return this.coinApiService.getById(assetId);
+  }
 }
