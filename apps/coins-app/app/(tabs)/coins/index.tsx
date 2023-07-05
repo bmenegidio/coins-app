@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { MaterialIcons } from '@expo/vector-icons';
+import { useRouter } from 'expo-router';
 import { debounce } from 'lodash';
 import { Icon, Input, VStack } from 'native-base';
 
@@ -11,6 +12,7 @@ import { apiInstance } from '../../../services/api';
 import { ICoin } from './models/ICoin';
 
 export default function CoinsPage() {
+  const router = useRouter();
   const [loading, setLoading] = useState(true);
   const [coins, setCoins] = useState<ICoin[]>([]);
   const [filter, setFilter] = useState('');
@@ -42,6 +44,10 @@ export default function CoinsPage() {
       name: coin.label,
       description: coin.priceUsd,
     }));
+  }
+
+  function navigateToCoinDetail(coin: ICoin) {
+    router.push(`/coin/${coin.id}`);
   }
 
   const debouncedSearch = useRef(
@@ -101,6 +107,7 @@ export default function CoinsPage() {
           data={listFiltered}
           isLoading={loading}
           onRefresh={handleFetchCoins}
+          onItemClick={navigateToCoinDetail}
         />
       </ContentWrapper>
     </>
