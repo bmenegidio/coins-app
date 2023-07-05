@@ -32,7 +32,9 @@ export class CoinApiService {
             priceUsd: asset.price_usd
               ? this.dollarString.format(asset.price_usd)
               : '',
-            volume1HrsUsd: asset.volume_1hrs_usd,
+            volume1HrsUsd: asset.volume_1hrs_usd
+              ? this.dollarString.format(asset.volume_1hrs_usd)
+              : '',
           }))
       ),
       catchError((error) => {
@@ -60,7 +62,9 @@ export class CoinApiService {
             priceUsd: asset.price_usd
               ? this.dollarString.format(asset.price_usd)
               : '',
-            volume1HrsUsd: asset.volume_1hrs_usd,
+            volume1HrsUsd: asset.volume_1hrs_usd
+              ? this.dollarString.format(asset.volume_1hrs_usd)
+              : '',
           };
         })
       );

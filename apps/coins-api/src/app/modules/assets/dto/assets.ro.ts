@@ -3,5 +3,5 @@ export class AssetsRo {
   label: string;
   name: string;
   priceUsd: string;
-  volume1HrsUsd: number;
+  volume1HrsUsd: string;
 }
