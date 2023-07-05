@@ -41,7 +41,7 @@ describe('CoinApiService', () => {
       label: 'Bitcoin (BTC)',
       name: 'Bitcoin',
       priceUsd: '$9,166.000',
-      volume1HrsUsd: 102894431436.49,
+      volume1HrsUsd: '$102,894,431,436.490',
     },
   ];
 

@@ -42,7 +42,7 @@ describe('AssetsService', () => {
         name: 'Ethereum',
         label: 'Ethereum (ETH)',
         priceUsd: '$9,385.00',
-        volume1HrsUsd: 1268,
+        volume1HrsUsd: '$126,8',
       },
     ];
     jest
