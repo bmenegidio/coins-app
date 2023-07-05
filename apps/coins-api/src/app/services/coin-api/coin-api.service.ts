@@ -20,22 +20,26 @@ export class CoinApiService {
     minimumFractionDigits: 3,
   });
 
+  private normalizeCoinData(coinData: CoinApiAssetsResponseRo): AssetsRo {
+    return {
+      id: coinData.asset_id,
+      label: `${coinData.name} (${coinData.asset_id})`,
+      name: coinData.name,
+      priceUsd: coinData.price_usd
+        ? this.dollarString.format(coinData.price_usd)
+        : '',
+      volume1HrsUsd: coinData.volume_1hrs_usd
+        ? this.dollarString.format(coinData.volume_1hrs_usd)
+        : '',
+    };
+  }
+
   getAssets(): Observable<AssetsRo[]> {
     return this.httpService.get<CoinApiAssetsResponseRo[]>('/assets').pipe(
       map((res) =>
         res.data
           .filter((asset) => asset.type_is_crypto === 1)
-          .map((asset) => ({
-            id: asset.asset_id,
-            label: `${asset.name} (${asset.asset_id})`,
-            name: asset.name,
-            priceUsd: asset.price_usd
-              ? this.dollarString.format(asset.price_usd)
-              : '',
-            volume1HrsUsd: asset.volume_1hrs_usd
-              ? this.dollarString.format(asset.volume_1hrs_usd)
-              : '',
-          }))
+          .map((coinData) => this.normalizeCoinData(coinData))
       ),
       catchError((error) => {
         throw new BadRequestException(error);
@@ -55,17 +59,7 @@ export class CoinApiService {
             throw new NotFoundException('Asset not found.');
 
           const asset = res.data[0];
-          return {
-            id: asset.asset_id,
-            label: `${asset.name} (${asset.asset_id})`,
-            name: asset.name,
-            priceUsd: asset.price_usd
-              ? this.dollarString.format(asset.price_usd)
-              : '',
-            volume1HrsUsd: asset.volume_1hrs_usd
-              ? this.dollarString.format(asset.volume_1hrs_usd)
-              : '',
-          };
+          return this.normalizeCoinData(asset);
         })
       );
   }
