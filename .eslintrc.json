@@ -28,13 +28,20 @@
           "error",
           {
             "enforceBuildableLibDependency": true,
+            "allowCircularSelfDependency": true,
             "allow": [],
             "depConstraints": [
               {
-                "sourceTag": "*",
-                "onlyDependOnLibsWithTags": [
-                  "*"
-                ]
+                "sourceTag": "scope:shared/types",
+                "onlyDependOnLibsWithTags": ["scope:shared/types"]
+              },
+              {
+                "sourceTag": "scope:api",
+                "onlyDependOnLibsWithTags": ["scope:shared/types", "scope:api"]
+              },
+              {
+                "sourceTag": "scope:app",
+                "onlyDependOnLibsWithTags": ["scope:shared/types", "scope:app"]
               }
             ]
           }

@@ -11,10 +11,6 @@
     }
   ],
   "compilerOptions": {
-    "esModuleInterop": true,
-    "paths": {
-      "@/services/*": ["./apps/coins-api/src/app/services/*"],
-      "@/modules/*": ["./apps/coins-api/src/app/modules/*"]
-    }
-  },
+    "esModuleInterop": true
+  }
 }
