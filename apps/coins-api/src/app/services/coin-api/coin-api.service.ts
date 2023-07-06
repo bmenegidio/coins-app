@@ -6,7 +6,7 @@ import {
 } from '@nestjs/common';
 import { catchError, map, Observable } from 'rxjs';
 
-import { AssetsRo } from '../../modules/assets/dto/assets.ro';
+import { AssetsRo } from '@/coins-project/types/assets/asset.ro';
 
 import { CoinApiAssetsResponseRo } from './dto/assets-response.ro';
 

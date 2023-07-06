@@ -1,8 +1,8 @@
 import { Test } from '@nestjs/testing';
 import { firstValueFrom, of } from 'rxjs';
 
-import { AssetsController } from '@/modules/assets/assets.controller';
-import { AssetsService } from '@/modules/assets/assets.service';
+import { AssetsController } from '@/coins-api/modules/assets/assets.controller';
+import { AssetsService } from '@/coins-api/modules/assets/assets.service';
 
 describe('AssetsController', () => {
   let assetsController: AssetsController;

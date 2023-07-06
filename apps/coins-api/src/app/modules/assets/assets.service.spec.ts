@@ -1,10 +1,9 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { firstValueFrom, of } from 'rxjs';
 
-import { AssetsService } from '@/modules/assets/assets.service';
-import { CoinApiService } from '@/services/coin-api/coin-api.service';
-
-import { AssetsRo } from './dto/assets.ro';
+import { AssetsService } from '@/coins-api/modules/assets/assets.service';
+import { CoinApiService } from '@/coins-api/services/coin-api/coin-api.service';
+import { AssetsRo } from '@/coins-project/types/assets/asset.ro';
 
 describe('AssetsService', () => {
   let assetsService: AssetsService;

@@ -4,7 +4,7 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { AxiosResponse } from 'axios';
 import { firstValueFrom, of } from 'rxjs';
 
-import { AssetsRo } from '../../modules/assets/dto/assets.ro';
+import { AssetsRo } from '@/coins-project/types/assets/asset.ro';
 
 import { CoinApiAssetsResponseRo } from './dto/assets-response.ro';
 import { CoinApiService } from './coin-api.service';
