@@ -4,17 +4,17 @@ import { useRouter } from 'expo-router';
 import { debounce } from 'lodash';
 import { Icon, Input, VStack } from 'native-base';
 
+import { AssetsRo } from '@/coins-project/types/assets/asset.ro';
+
 import { List } from '../../../components/dataDisplay/list';
 import { ContentWrapper } from '../../../components/layout/content';
 import { ErrorContent } from '../../../components/layout/errorContent';
 import { apiInstance } from '../../../services/api';
 
-import { ICoin } from './models/ICoin';
-
 export default function CoinsPage() {
   const router = useRouter();
   const [loading, setLoading] = useState(true);
-  const [coins, setCoins] = useState<ICoin[]>([]);
+  const [coins, setCoins] = useState<AssetsRo[]>([]);
   const [filter, setFilter] = useState('');
   const [error, setError] = useState(false);
   const listFiltered = filter
@@ -28,7 +28,7 @@ export default function CoinsPage() {
   async function handleFetchCoins() {
     setLoading(true);
     try {
-      const { data } = await apiInstance.get<ICoin[]>('/assets');
+      const { data } = await apiInstance.get<AssetsRo[]>('/assets');
       setCoins(parseCoinDataToListStandard(data));
       setError(false);
     } catch (error) {
@@ -38,7 +38,7 @@ export default function CoinsPage() {
     }
   }
 
-  function parseCoinDataToListStandard(coinsData: ICoin[]) {
+  function parseCoinDataToListStandard(coinsData: AssetsRo[]) {
     return coinsData.map((coin) => ({
       ...coin,
       name: coin.label,
@@ -46,7 +46,7 @@ export default function CoinsPage() {
     }));
   }
 
-  function navigateToCoinDetail(coin: ICoin) {
+  function navigateToCoinDetail(coin: AssetsRo) {
     router.push(`/coin/${coin.id}`);
   }
 

@@ -2,23 +2,24 @@ import { useEffect, useState } from 'react';
 import { Stack, useSearchParams } from 'expo-router';
 import { Text, useTheme, View, VStack } from 'native-base';
 
+import { AssetsRo } from '@/coins-project/types/assets/asset.ro';
+
 import { SkeletonList } from '../../components/feedback/skeletonList';
 import { ContentWrapper } from '../../components/layout/content';
 import { ErrorContent } from '../../components/layout/errorContent';
 import { apiInstance } from '../../services/api';
-import { ICoin } from '../(tabs)/coins/models/ICoin';
 
 const CoinDetailPage = () => {
   const { id: coinId } = useSearchParams();
   const { colors } = useTheme();
   const [loading, setLoading] = useState(false);
-  const [coin, setCoin] = useState<ICoin>();
+  const [coin, setCoin] = useState<AssetsRo>();
   const [error, setError] = useState(false);
 
   async function handleFetchCoinDetail() {
     try {
       setLoading(true);
-      const { data } = await apiInstance.get<ICoin>(`/assets/${coinId}`);
+      const { data } = await apiInstance.get<AssetsRo>(`/assets/${coinId}`);
       setCoin(data);
       setError(false);
     } catch (error) {
