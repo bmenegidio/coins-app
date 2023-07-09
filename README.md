@@ -1,6 +1,9 @@
 ## Motivo
 Integrar uma API NodeJS e um APP Mobile React Native (Expo) ao NX. E compartilhar code style e contratos de tipos (interfaces).
 
+![APP](./docs/images/readme/app_ios.gif)
+
+
 ##  Pré requisitos
  - Git ([https://git-scm.com/](https://git-scm.com/))
  - NodeJS ([https://nodejs.org](https://nodejs.org/))
