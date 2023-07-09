@@ -1,3 +1,8 @@
+![GitHub](https://img.shields.io/github/license/bmenegidio/coins-app)
+![GitHub top language](https://img.shields.io/github/languages/top/bmenegidio/coins-app)
+![GitHub repo size](https://img.shields.io/github/repo-size/bmenegidio/coins-app)
+
+
 ## Motivo
 Integrar uma API NodeJS e um APP Mobile React Native (Expo) ao NX. E compartilhar code style e contratos de tipos (interfaces).
 
