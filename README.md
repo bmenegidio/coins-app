@@ -4,7 +4,7 @@
 
 
 ## Motivo
-Integrar uma API NodeJS e um APP Mobile React Native (Expo) ao NX. E compartilhar code style e contratos de tipos (interfaces).
+Integrar uma API [NodeJS](https://nodejs.org/) e um APP Mobile React Native ([Expo](https://expo.dev/)) ao [NX](https://nx.dev/). E compartilhar code style e contratos de tipos (interfaces).
 
 ![APP](./docs/images/readme/app_ios.gif)
 
