@@ -15,9 +15,9 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@/coins-project/types/*": ["./libs/types/coins-project/src/lib/*"],
+      "@/coins-api/modules/*": ["./apps/coins-api/src/app/modules/*"],
       "@/coins-api/services/*": ["./apps/coins-api/src/app/services/*"],
-      "@/coins-api/modules/*": ["./apps/coins-api/src/app/modules/*"]
+      "@/coins-project/types/*": ["./libs/types/coins-project/src/lib/*"]
     }
   },
   "exclude": ["node_modules", "tmp"]
